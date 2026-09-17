@@ -185,10 +185,12 @@ function startReveals() {
   let ticking = false;
   function update() {
     ticking = false;
+    const pin   = track.querySelector('.zone-pin');
+    const stick = parseFloat(getComputedStyle(pin).top) || 0;
     const rect  = track.getBoundingClientRect();
-    const total = rect.height - window.innerHeight;
+    const total = rect.height - pin.offsetHeight;
     if (total <= 0) return;
-    const p = Math.min(0.9999, Math.max(0, -rect.top / total));
+    const p = Math.min(0.9999, Math.max(0, (stick - rect.top) / total));
     go(Math.floor(p * N));
   }
 

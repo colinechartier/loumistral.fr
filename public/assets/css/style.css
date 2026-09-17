@@ -1262,22 +1262,22 @@ footer {
   .nav-links .nav-cta { margin-top: 0.8rem; text-align: center; padding: 0.95rem 1.5rem !important; }
 
   /* écrans épinglés : hauteur réelle du téléphone (barre d'adresse comprise) */
-  .manifeste-pin, .zone-pin { height: 100vh; height: 100svh; }
+  .manifeste-pin { height: 100vh; height: 100svh; }
 
   /* Pour qui : « Vous » au-dessus, le verbe juste en dessous */
-  .zone-track { height: 280vh; height: 280svh; }
+  /* bloc compact épinglé au milieu de l'écran : plus de grands vides */
+  .zone-top { margin-bottom: 2.5rem; }
+  .zone-track { height: calc(15rem + 150svh); }
   .zone-pin {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
-    column-gap: 0;
+    display: block;
+    height: auto;
+    top: calc(50svh - 6rem);
   }
-  .zone-vous {
-    align-self: end;
-    padding-bottom: 0.08em;
-  }
-  .zone-slot { overflow: hidden; }
+  .zone-vous { display: block; padding-bottom: 0.08em; }
+  .zone-slot { height: 11rem; overflow: hidden; }
+  .zone-end { margin-top: 2.5rem; }
   .zone-verbs { top: 0; }
-  .zone-vous, .zone-verb-word { font-size: clamp(2.3rem, 12vw, 4rem); }
+  .zone-vous, .zone-verb-word { font-size: clamp(2.1rem, 10.6vw, 4rem); }
   .zone-verb { padding-bottom: 2.2rem; }
   .zone-verb-desc { max-width: 34ch; font-size: 0.9rem; }
 }
