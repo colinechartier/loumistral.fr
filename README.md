@@ -11,13 +11,13 @@ site/
 └── public/               TOUT ce qui part en ligne
     ├── index.html        la page
     ├── 404.html          page d'erreur
-    ├── favicon.svg       icône d'onglet
+    ├── favicon.ico       icône d'onglet (LM)
     ├── robots.txt
     ├── sitemap.xml
     └── assets/
         ├── css/style.css styles (couleurs dans :root, en haut du fichier)
         ├── js/main.js    nav, menu mobile, apparitions, rideau, récit défilant
-        └── img/          og-cover.png (aperçu de partage), apple-touch-icon.png
+        └── img/          photo, favicon-32, apple-touch-icon (LM), og-cover (partage)
 ```
 
 ## Voir le site en local
