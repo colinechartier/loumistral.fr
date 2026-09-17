@@ -148,3 +148,18 @@ function startReveals() {
   window.addEventListener('resize', onScroll, { passive: true });
   update();
 })();
+
+// ─── Pour qui : le verbe au centre de l'écran s'allume ─────────────
+(function () {
+  const verbs = Array.from(document.querySelectorAll('.zone-verb'));
+  if (!verbs.length) return;
+
+  function activate(v) { verbs.forEach(x => x.classList.toggle('is-active', x === v)); }
+
+  verbs.forEach(v => v.addEventListener('mouseenter', () => activate(v)));
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) activate(e.target); });
+  }, { rootMargin: '-45% 0px -45% 0px' });
+  verbs.forEach(v => obs.observe(v));
+})();
