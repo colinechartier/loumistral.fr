@@ -862,9 +862,24 @@ nav.scrolled { border-color: var(--rule-light); }
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 3rem;
-  border-top: 1.5px solid var(--rule-strong);
+  gap: 1.6rem;
 }
+
+.agence-photo {
+  margin: 0 0 1.4rem;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--beige-chaud);
+}
+.agence-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.06);
+  transition: transform 1.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.agence-right.visible .agence-photo img { transform: scale(1); }
 
 .agence-plate-eyebrow {
   font-size: 0.6rem;
@@ -1178,7 +1193,7 @@ footer {
 
   .agence { grid-template-columns: 1fr; gap: 4rem; }
   .agence-right { justify-content: flex-start; }
-  .agence-plate { max-width: 100%; min-height: 280px; }
+  .agence-plate { max-width: 420px; }
 
   .zone-top { grid-template-columns: 1fr; gap: 1.2rem; margin-bottom: 4rem; }
   .zone-track { height: 260vh; }
