@@ -864,7 +864,6 @@ nav.scrolled { border-color: var(--rule-light); }
   justify-content: space-between;
   gap: 3rem;
   border-top: 1.5px solid var(--rule-strong);
-  border-bottom: 1.5px solid var(--rule-strong);
 }
 
 .agence-plate-eyebrow {
