@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page introuvable · Lou Mistral Studio</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#4a5244">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Syne', system-ui, sans-serif;
+      background: #4a5244;
+      color: #FBFBF3;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 9%;
+    }
+    .label {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.28em;
+      text-transform: uppercase; color: #C36233; margin-bottom: 2rem;
+    }
+    h1 {
+      font-size: clamp(2.6rem, 7vw, 6rem); font-weight: 800;
+      letter-spacing: -0.035em; line-height: 0.95; margin-bottom: 2.5rem;
+    }
+    h1 span { color: #C36233; }
+    a {
+      align-self: flex-start;
+      display: inline-block; padding: 0.9rem 2.2rem;
+      border: 1.5px solid rgba(251,251,243,0.45);
+      color: #FBFBF3; text-decoration: none;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    a:hover, a:focus-visible { border-color: #FBFBF3; background: rgba(251,251,243,0.08); outline: none; }
+  </style>
+</head>
+<body>
+  <p class="label">Erreur 404</p>
+  <h1>Cette page<br>n'existe pas<span>.</span></h1>
+  <a href="/">Retour à l'accueil</a>
+</body>
+</html>

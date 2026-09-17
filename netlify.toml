@@ -1,12 +1,24 @@
+# Configuration Netlify · Lou Mistral Studio
+# Netlify publie uniquement le dossier public/ (pas de build).
+
+[build]
+  publish = "public"
+
+[[redirects]]
+  from = "https://www.loumistral.com/*"
+  to   = "https://loumistral.com/:splat"
+  status = 301
+  force = true
+
 [[headers]]
   for = "/*"
   [headers.values]
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
-[[redirects]]
-  from = "https://www.loumistral.com/*" 
-    to   = "https://loumistral.com/:splat"
-  status = 301
-  force = true
+[[headers]]
+  for = "/assets/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
