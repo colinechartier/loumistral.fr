@@ -149,17 +149,57 @@ function startReveals() {
   update();
 })();
 
-// ─── Pour qui : le verbe au centre de l'écran s'allume ─────────────
+// ─── Pour qui : phrase épinglée, verbe aligné sur « Vous » ─────────
 (function () {
-  const verbs = Array.from(document.querySelectorAll('.zone-verb'));
-  if (!verbs.length) return;
+  const track = document.getElementById('zone-track');
+  if (!track) return;
+  const list  = track.querySelector('.zone-verbs');
+  const verbs = Array.from(track.querySelectorAll('.zone-verb'));
+  const N = verbs.length;
+  if (!N) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    verbs.forEach(v => v.classList.add('is-active'));
+    return;
+  }
 
-  function activate(v) { verbs.forEach(x => x.classList.toggle('is-active', x === v)); }
+  let current = 0;
 
-  verbs.forEach(v => v.addEventListener('mouseenter', () => activate(v)));
+  // Décalage qui amène le centre du verbe i exactement au centre de « Vous »
+  function shiftFor(i) {
+    const word = verbs[i].querySelector('.zone-verb-word');
+    return -(verbs[i].offsetTop + word.offsetHeight / 2);
+  }
 
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) activate(e.target); });
-  }, { rootMargin: '-45% 0px -45% 0px' });
-  verbs.forEach(v => obs.observe(v));
+  function go(i, force) {
+    if (i === current && !force) return;
+    current = i;
+    verbs.forEach((v, k) => v.classList.toggle('is-active', k === i));
+    list.style.transform = 'translateY(' + shiftFor(i) + 'px)';
+  }
+
+  let ticking = false;
+  function update() {
+    ticking = false;
+    const rect  = track.getBoundingClientRect();
+    const total = rect.height - window.innerHeight;
+    if (total <= 0) return;
+    const p = Math.min(0.9999, Math.max(0, -rect.top / total));
+    go(Math.floor(p * N));
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
+
+  function realign() {
+    list.style.transition = 'none';
+    go(current, true);
+    list.getBoundingClientRect();
+    list.style.transition = '';
+  }
+  window.addEventListener('resize', realign, { passive: true });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(realign);
+
+  realign();
+  update();
 })();
