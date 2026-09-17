@@ -165,7 +165,12 @@ function startReveals() {
   let current = 0;
 
   // Décalage qui amène le centre du verbe i exactement au centre de « Vous »
+  const stacked = window.matchMedia('(max-width: 960px)');
+
   function shiftFor(i) {
+    // téléphone : le haut du verbe se cale juste sous « Vous »
+    if (stacked.matches) return -verbs[i].offsetTop;
+    // ordinateur : centre du verbe sur le centre de « Vous »
     const word = verbs[i].querySelector('.zone-verb-word');
     return -(verbs[i].offsetTop + word.offsetHeight / 2);
   }
@@ -198,6 +203,7 @@ function startReveals() {
     list.style.transition = '';
   }
   window.addEventListener('resize', realign, { passive: true });
+  stacked.addEventListener('change', realign);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(realign);
 
   realign();

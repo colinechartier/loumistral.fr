@@ -1196,12 +1196,8 @@ footer {
   .agence-plate { max-width: 420px; }
 
   .zone-top { grid-template-columns: 1fr; gap: 1.2rem; margin-bottom: 4rem; }
-  .zone-track { height: 260vh; }
-  .zone-vous, .zone-verb-word { font-size: clamp(1.7rem, 8.4vw, 3rem); }
-  .zone-verb-desc { font-size: 0.82rem; max-width: 100%; }
   .zone-end { margin-top: 4.5rem; }
 
-  .manifeste-track { height: 460vh; }
   .manifeste-pin { grid-template-columns: 1fr; padding: 0 7%; }
   .manifeste-gauge { display: none; }
   .manifeste-stage { height: 62vh; }
@@ -1230,11 +1226,93 @@ footer {
     border-bottom: 0.75px solid var(--rule-light);
   }
 
-  .combo-price-row { flex-wrap: wrap; gap: 1rem; }
 
-  .manifeste-track { height: 420vh; }
   .manifeste-pin { padding: 0 5%; }
   .intro-on .intro { padding: 0 5%; }
 }
 
 
+
+
+/* ═══════════════════════════════════════════════════════════
+   MOBILE · confort de lecture et de pouce
+═══════════════════════════════════════════════════════════ */
+@media (max-width: 960px) {
+  /* barre de navigation */
+  .hamburger { width: 44px; height: 44px; flex-shrink: 0; align-items: center; justify-content: center; }
+  .nav-logo { min-width: 0; padding: 8px 0; }
+  .nav-logo-name { white-space: nowrap; }
+  .hero-location { color: var(--texte-muted); }
+
+  /* tablette et téléphone : libellés lisibles, cibles de 48 px */
+  .section-label, .hero-eyebrow, .hero-index-label, .pack-badge,
+  .agence-plate-eyebrow, .agence-plate-sub, .contact-info-label { font-size: 0.7rem; }
+  .nav-logo-baseline { font-size: 0.6rem; }
+  .hero-location { font-size: 0.66rem; line-height: 1.6; }
+  .pack-meta, .packs-tva { font-size: 0.8rem; }
+  .combo-discount { font-size: 0.8rem; }
+  .footer-copy { font-size: 0.74rem; }
+  .btn, .recolte-card-cta { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; }
+  .recolte-card-cta { display: flex; }
+  .footer-links { gap: 2rem; }
+  .footer-links a { display: inline-block; padding: 1rem 0; }
+  .nav-links { padding: 1.2rem 7% 1.8rem; gap: 0; }
+  .nav-links li { width: 100%; }
+  .nav-links a { display: block; padding: 0.95rem 0; font-size: 0.82rem; }
+  .nav-links .nav-cta { margin-top: 0.8rem; text-align: center; padding: 0.95rem 1.5rem !important; }
+
+  /* écrans épinglés : hauteur réelle du téléphone (barre d'adresse comprise) */
+  .manifeste-pin, .zone-pin { height: 100vh; height: 100svh; }
+
+  /* Pour qui : « Vous » au-dessus, le verbe juste en dessous */
+  .zone-track { height: 280vh; height: 280svh; }
+  .zone-pin {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    column-gap: 0;
+  }
+  .zone-vous {
+    align-self: end;
+    padding-bottom: 0.08em;
+  }
+  .zone-slot { overflow: hidden; }
+  .zone-verbs { top: 0; }
+  .zone-vous, .zone-verb-word { font-size: clamp(2.3rem, 12vw, 4rem); }
+  .zone-verb { padding-bottom: 2.2rem; }
+  .zone-verb-desc { max-width: 34ch; font-size: 0.9rem; }
+}
+
+@media (max-width: 700px) {
+  nav { padding: 0 5%; }
+  .nav-logo-name { font-size: 0.84rem; letter-spacing: 0.05em; }
+  .nav-logo-baseline { letter-spacing: 0.14em; }
+  .recolte-card, .recolte-card:last-child { padding-right: 0; }
+  .recolte-card-cta { letter-spacing: 0.08em; }
+  .cta-title { font-size: clamp(1.9rem, 8.2vw, 3.5rem); }
+
+  /* boutons : pleine largeur au pouce */
+  .btn, .recolte-card-cta { display: flex; width: 100%; text-align: center; }
+  .contact-actions { flex-direction: column; }
+
+  /* manifeste : moins de défilement, phrases plus présentes */
+  .manifeste-track { height: 340vh; height: 340svh; }
+  .beat-text { font-size: clamp(1.7rem, 8vw, 2.3rem); }
+  .beat--final .beat-text { font-size: clamp(1.2rem, 5.6vw, 1.5rem); }
+
+  /* offre duo : prix empilés */
+  .combo-price-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 2rem 0;
+  }
+  .combo-new { font-size: 2.6rem; line-height: 1.05; }
+  .combo-discount { padding-left: 0; font-size: 0.8rem; color: var(--blanc-camargue); }
+
+  /* agence et contact */
+  .agence-plate { max-width: 100%; }
+  .agence-bullet { padding: 1rem 1.2rem; }
+  .contact-info-value { word-break: break-word; }
+
+  .cta-final { padding: 7rem 5%; }
+}
