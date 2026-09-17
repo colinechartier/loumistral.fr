@@ -25,6 +25,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
   <script>
+    document.documentElement.classList.add('js');
     (function () {
       var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       var seen = false;
@@ -152,36 +153,51 @@
       <span class="section-label reveal">Le process</span>
       <h2 class="section-title reveal reveal-d1">Six temps,<br>une marque.</h2>
     </div>
-    <div class="process-track">
-      <div class="process-step reveal">
-        <div class="process-num">01</div>
-        <h3 class="process-name">Découverte</h3>
-        <p class="process-desc">Questionnaire et appel pour cerner le projet.</p>
-      </div>
-      <div class="process-step reveal reveal-d1">
-        <div class="process-num">02</div>
-        <h3 class="process-name">Stratégie</h3>
-        <p class="process-desc">Positionnement, cibles, territoire de marque.</p>
-      </div>
-      <div class="process-step reveal reveal-d1">
-        <div class="process-num">03</div>
-        <h3 class="process-name">Direction artistique</h3>
-        <p class="process-desc">Moodboards et pistes visuelles.</p>
-      </div>
-      <div class="process-step reveal reveal-d2">
-        <div class="process-num">04</div>
-        <h3 class="process-name">Identité</h3>
-        <p class="process-desc">Logo, couleurs, typographies, éléments graphiques.</p>
-      </div>
-      <div class="process-step reveal reveal-d2">
-        <div class="process-num">05</div>
-        <h3 class="process-name">Déclinaisons</h3>
-        <p class="process-desc">Les supports prennent vie.</p>
-      </div>
-      <div class="process-step reveal reveal-d2">
-        <div class="process-num">06</div>
-        <h3 class="process-name">Livraison</h3>
-        <p class="process-desc">Fichiers finaux, charte et guide d'utilisation.</p>
+    <div class="process-path" id="process-path">
+      <span class="path-line" aria-hidden="true"><span class="path-fill"></span></span>
+      <div class="phases">
+        <div class="phase">
+          <span class="phase-node" aria-hidden="true"></span>
+          <p class="phase-word">Écouter<span class="phase-dot">.</span></p>
+          <div class="phase-steps">
+            <div class="phase-step">
+              <h3 class="phase-step-name">Découverte</h3>
+              <p class="phase-step-desc">Questionnaire et appel pour cerner le projet.</p>
+            </div>
+            <div class="phase-step">
+              <h3 class="phase-step-name">Stratégie</h3>
+              <p class="phase-step-desc">Positionnement, cibles, territoire de marque.</p>
+            </div>
+          </div>
+        </div>
+        <div class="phase">
+          <span class="phase-node" aria-hidden="true"></span>
+          <p class="phase-word">Construire<span class="phase-dot">.</span></p>
+          <div class="phase-steps">
+            <div class="phase-step">
+              <h3 class="phase-step-name">Direction artistique</h3>
+              <p class="phase-step-desc">Moodboards et pistes visuelles.</p>
+            </div>
+            <div class="phase-step">
+              <h3 class="phase-step-name">Identité</h3>
+              <p class="phase-step-desc">Logo, couleurs, typographies, éléments graphiques.</p>
+            </div>
+          </div>
+        </div>
+        <div class="phase">
+          <span class="phase-node" aria-hidden="true"></span>
+          <p class="phase-word">Transmettre<span class="phase-dot">.</span></p>
+          <div class="phase-steps">
+            <div class="phase-step">
+              <h3 class="phase-step-name">Déclinaisons</h3>
+              <p class="phase-step-desc">Les supports prennent vie.</p>
+            </div>
+            <div class="phase-step">
+              <h3 class="phase-step-name">Livraison</h3>
+              <p class="phase-step-desc">Fichiers finaux, charte et guide d’utilisation.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>

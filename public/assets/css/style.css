@@ -440,7 +440,7 @@ nav.scrolled { border-color: var(--rule-light); }
 }
 
 /* ═══════════════════════════════════════════════════════════
-   3. PROCESS
+   3. PROCESS (trois gestes, six temps)
 ═══════════════════════════════════════════════════════════ */
 .process {
   background: var(--blanc-camargue);
@@ -448,42 +448,111 @@ nav.scrolled { border-color: var(--rule-light); }
   border-bottom: 1.5px solid var(--rule-light);
 }
 
-.process-header { margin-bottom: 4.5rem; }
+.process-header { margin-bottom: 5rem; }
 
-.process-track {
+.process-path { position: relative; padding-top: 3.2rem; }
+
+/* le fil qui se trace */
+.path-line {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1.5px;
+  background: var(--rule-light);
+}
+.path-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--terre-sud);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 2.1s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.phases {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  border-top: 1.5px solid var(--rule-strong);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 3rem;
 }
 
-.process-step {
-  padding: 2.5rem 2rem 2.5rem 0;
-  border-right: 0.75px solid var(--rule-light);
-}
-.process-step:last-child { border-right: none; }
+.phase { position: relative; container-type: inline-size; }
 
-.process-num {
-  font-size: 3rem;
+.phase-node {
+  position: absolute;
+  top: calc(-3.2rem - 5px);
+  left: 0;
+  width: 11px; height: 11px;
+  background: var(--blanc-camargue);
+  border: 1.5px solid var(--rule-light);
+  transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+.phase-word {
+  /* « Transmettre. », le mot le plus long, remplit la colonne */
+  font-size: min(9.6cqi, 3.6rem);
   font-weight: 800;
-  letter-spacing: -0.05em;
-  color: var(--rule-light);
+  letter-spacing: -0.035em;
   line-height: 1;
-  margin-bottom: 1.2rem;
+  color: var(--vert-fonce);
+  margin-bottom: 2.4rem;
+}
+.phase-dot { color: var(--terre-sud); }
+
+.phase-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
 }
 
-.process-name {
-  font-size: 0.8rem;
+.phase-step {
+  padding-left: 1.2rem;
+  border-left: 1.5px solid var(--vert-alpilles);
+}
+
+.phase-step-name {
+  font-size: 1rem;
   font-weight: 700;
   color: var(--vert-fonce);
-  letter-spacing: 0.02em;
-  margin-bottom: 0.5rem;
-  line-height: 1.35;
+  margin-bottom: 0.35rem;
 }
 
-.process-desc {
-  font-size: 0.74rem;
+.phase-step-desc {
+  font-size: 0.88rem;
+  line-height: 1.7;
   color: var(--texte-muted);
-  line-height: 1.65;
+}
+
+/* état initial, avant que le fil n'arrive */
+.js .phase-word,
+.js .phase-step {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* le fil arrive sur chaque geste l'un après l'autre */
+.process-path.is-drawn .path-fill { transform: scaleX(1); }
+.process-path.is-drawn .phase-node { background: var(--terre-sud); border-color: var(--terre-sud); }
+.process-path.is-drawn .phase-word,
+.process-path.is-drawn .phase-step { opacity: 1; transform: none; }
+
+.process-path.is-drawn .phase:nth-child(1) .phase-node { transition-delay: 0s; }
+.process-path.is-drawn .phase:nth-child(2) .phase-node { transition-delay: 0.75s; }
+.process-path.is-drawn .phase:nth-child(3) .phase-node { transition-delay: 1.45s; }
+
+.process-path.is-drawn .phase:nth-child(1) .phase-word { transition-delay: 0.1s; }
+.process-path.is-drawn .phase:nth-child(1) .phase-step:nth-child(1) { transition-delay: 0.3s; }
+.process-path.is-drawn .phase:nth-child(1) .phase-step:nth-child(2) { transition-delay: 0.45s; }
+.process-path.is-drawn .phase:nth-child(2) .phase-word { transition-delay: 0.85s; }
+.process-path.is-drawn .phase:nth-child(2) .phase-step:nth-child(1) { transition-delay: 1.05s; }
+.process-path.is-drawn .phase:nth-child(2) .phase-step:nth-child(2) { transition-delay: 1.2s; }
+.process-path.is-drawn .phase:nth-child(3) .phase-word { transition-delay: 1.55s; }
+.process-path.is-drawn .phase:nth-child(3) .phase-step:nth-child(1) { transition-delay: 1.75s; }
+.process-path.is-drawn .phase:nth-child(3) .phase-step:nth-child(2) { transition-delay: 1.9s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .path-fill { transform: scaleX(1); transition: none; }
+  .phase-node { background: var(--terre-sud); border-color: var(--terre-sud); }
+  .js .phase-word, .js .phase-step { opacity: 1; transform: none; transition: none; }
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -1099,7 +1168,12 @@ footer {
   .hero-left { border-right: none; border-bottom: 1px solid var(--rule-light); padding: 4rem 7% 3.5rem; }
   .hero-right { padding: 3rem 7%; gap: 2.5rem; }
 
-  .process-track { grid-template-columns: repeat(3, 1fr); }
+  .process-path { padding-top: 0; padding-left: 2.4rem; }
+  .path-line { top: 0; bottom: 0; left: 0; right: auto; width: 1.5px; height: auto; }
+  .path-fill { transform: scaleY(0); transform-origin: center top; }
+  .process-path.is-drawn .path-fill { transform: scaleY(1); }
+  .phases { grid-template-columns: 1fr; gap: 3.5rem; }
+  .phase-node { top: 0.9rem; left: calc(-2.4rem - 5px); }
 
   .recolte-grid { grid-template-columns: 1fr; }
   .recolte-card { border-right: none; padding-left: 0 !important; border-bottom: 0.75px solid rgba(255,255,255,0.08); }
@@ -1134,7 +1208,6 @@ footer {
   .section-title { font-size: clamp(1.6rem, 7.2vw, 2.2rem); }
   .hero-right { padding: 2.5rem 5%; }
 
-  .process-track { grid-template-columns: repeat(2, 1fr); }
 
   .packs-grid { grid-template-columns: 1fr; }
   .pack-card, .pack-card:nth-child(2), .pack-card:last-child {
@@ -1152,6 +1225,4 @@ footer {
   .intro-on .intro { padding: 0 5%; }
 }
 
-@media (max-width: 480px) {
-  .process-track { grid-template-columns: 1fr 1fr; }
-}
+

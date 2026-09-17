@@ -203,3 +203,15 @@ function startReveals() {
   realign();
   update();
 })();
+
+// ─── Process : le fil se trace quand la section arrive ─────────────
+(function () {
+  const path = document.getElementById('process-path');
+  if (!path) return;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { path.classList.add('is-drawn'); obs.disconnect(); }
+    });
+  }, { threshold: 0.35 });
+  obs.observe(path);
+})();
